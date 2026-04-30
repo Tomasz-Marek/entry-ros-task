@@ -22,8 +22,20 @@ def generate_launch_description():
             parameters=[{'robot_description': robot_description}],
         ),
 
-        # TODO 1 — add your tf_publisher node here
+        # Publishes TF chain for animated robot arm
+        Node(
+            package='robot_arm',
+            executable='tf_publisher',
+            name='tf_publisher',
+            output='screen',
+        ),
 
-        # TODO 2 — add your pose_publisher node here
+        # Publishes end-effector pose based on TF lookup
+        Node(
+            package='robot_arm',
+            executable='pose_publisher',
+            name='pose_publisher',
+            output='screen',
+        ),
 
     ])

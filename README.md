@@ -112,3 +112,23 @@ Include a short note (a few sentences) explaining:
 2. How you verified your solution worked locally.
 3. Anything you'd improve with more time.
 
+## Submission Notes
+
+I completed all required TODOs and verified the solution locally using both RViz visualization and ROS topic inspection. The robot arm moves smoothly with the expected oscillatory motion, and the end-effector pose is correctly published and updated over time.
+
+For the TF publisher, I separated static and dynamic transforms using appropriate broadcasters and implemented the motion as a sinusoidal rotation based on time. I also made sure to follow the required frame hierarchy exactly as specified.
+
+To verify correctness, I used:
+- RViz to visually confirm the motion of the robot arm  
+- `ros2 topic echo /end_effector_pose` to confirm changing values  
+- an additional Python script (bonus) that programmatically checks whether the end-effector position changes over time  
+
+With more time, I would:
+- improve code structure further (e.g. clearer separation of logic and configuration)  
+- add more robust validation (e.g. checking motion frequency and amplitude)  
+- include unit tests or a more formal verification approach  
+
+### Bonus
+
+A verification script (`verify_motion.py`) is included outside the ROS2 package.
+It subscribes to `/end_effector_pose` and checks if the end-effector position changes over time.
